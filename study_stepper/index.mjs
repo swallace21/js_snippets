@@ -18,8 +18,9 @@ testingDiv.addEventListener("click", function() {
     testingDiv.innerText = `You have clicked on this DIV ${localStorage.clickcount} times.`
 });
 
-nextStudyStepHREF.addEventListener("click", function() {
-    window.href = 'espn.com'
+nextStudyStepHREF.addEventListener("click", function(event) {
+    console.log('LINK was clicked')
+    event.preventDefault() // prevents user from going to click href attribute
 });
 
 function shuffle(array) {
