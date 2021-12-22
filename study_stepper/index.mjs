@@ -7,7 +7,8 @@ const proceedDIV = document.getElementById('proceed')
 const studyStepsKey = 'study_stepsLS'
 const studyStepParam = 'study_step'
 const studyStep = urlParams.get(studyStepParam)
-let studySteps = ['1','2','3','4','5'];
+let studySteps = ['1','2','3','4','5']
+let nextStudyStep = studySteps[0] // default
 
 testingDiv.addEventListener("click", function() {
     if (localStorage.clickcount) {
@@ -18,10 +19,13 @@ testingDiv.addEventListener("click", function() {
     testingDiv.innerText = `You have clicked on this DIV ${localStorage.clickcount} times.`
 });
 
-nextStudyStepHREF.addEventListener("click", function(event) {
-    console.log('LINK was clicked')
-    event.preventDefault() // prevents user from going to click href attribute
-});
+function addClickListener() {
+    nextStudyStepHREF.addEventListener("click", function(event) {
+        event.preventDefault() // prevents user from going to click href attributes
+        const newURL = `${window.location.pathname}?${studyStepParam}=${nextStudyStep}`
+        window.location.href = newURL
+    });
+}
 
 function shuffle(array) {
     let currentIndex = array.length,  randomIndex;
@@ -55,19 +59,14 @@ function getStudyStep() {
 
 function populateNextStudyStep() {
     const studyStepPos = studySteps.indexOf(studyStep)
-    console.log('studyStep =',studyStep,'studyStepPos =',studyStepPos)
     if((studyStep > -1) && (studyStepPos > -1)) { // it found the current step
         const nextPos = studyStepPos + 1;
-        const nextStudyStep = studySteps[nextPos]
-        console.log(
-                    'studySteps = ',studySteps,
-                    ', nextPos =',nextPos,
-                    ', nextStudyStep =',nextStudyStep,
-                    ',studyStepPos =',studyStepPos
-                )
+        nextStudyStep = studySteps[nextPos]
         if(nextStudyStep > -1) {
-            nextStudyStepHREF.href = `test.html?${studyStepParam}=${nextStudyStep}` 
+            // sw: old
+            //nextStudyStepHREF.href = `test.html?${studyStepParam}=${nextStudyStep}` 
             nextStudyStepHREF.innerText = `Proceed to next study step ${nextStudyStep}`
+            addClickListener()
         } else {
             proceedDIV.innerHTML = '<p>Thank you for completing the study :)</p>'
         }
