@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Get All CSS</title>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+<body>
+    <section class="section">
+        <div class="container">
+          <h1 class="title">
+            Get All CSS from a DIV
+          </h1>
+          <div style="font-weight: 500">
+            <div id="extract-me" class="subtitle is-family-sans-serif" style="word-spacing: 1.0em;">
+                We are going to use JS to extract <strong>CSS</strong> from this DIV.
+            </div>
+            <div id="extract-me-mono" class="subtitle is-family-monospace" style="letter-spacing: 1.5em;">
+                And, we are going to use JS to extract <strong>CSS</strong> from this DIV too.
+            </div>
+          </div>
+          <div id="resultsDiv"></div>
+        </div>
+      </section>
+</body>
+<!-- JS Module ES6 Syntax-->
+<script src="./index.mjs" type="module"></script>
+</html>
